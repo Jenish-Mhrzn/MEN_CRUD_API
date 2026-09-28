@@ -13,3 +13,23 @@ export const getPeople = async (req, res) => {
   }
   res.status(200).json({ success: true, data: people });
 };
+
+export const createPeople = async (req, res) => {
+  const { name, address, gender } = req.body;
+
+  if (!name || !address || !gender) {
+    return res.status(400).json({
+      message: "Please provide name, address and gender",
+    });
+  }
+  const data = await CrudModel.create({
+    name,
+    address,
+    gender,
+  });
+
+  res.status(201).json({
+    success: true,
+    data,
+  });
+};

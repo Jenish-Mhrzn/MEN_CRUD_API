@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getPeople, getPeopleById } from "../controller/PeopleController.js";
+import { getPeople, getPeopleById,createPeople } from "../controller/PeopleController.js";
 
 const router = express.Router();
 
@@ -9,5 +9,8 @@ router.get("/", getPeople);
 
 //get by id
 router.get("/:id", getPeopleById);
+
+//create
+router.post("/", createPeople);
 
 export default router;
