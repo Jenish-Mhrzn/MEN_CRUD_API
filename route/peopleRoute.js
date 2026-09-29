@@ -6,6 +6,7 @@ import {
   createPeople,
   updatePeople,
   deletePeople,
+  searchPeople,
 } from "../controller/PeopleController.js";
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.patch("/:id", updatePeople);
 
 //delete
 router.delete("/:id", deletePeople);
+
+// search by name
+router.get("/query", searchPeople);
 
 export default router;

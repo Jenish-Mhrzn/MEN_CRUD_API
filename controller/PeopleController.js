@@ -60,3 +60,23 @@ export const deletePeople = async (req, res) => {
   }
   res.status(200).json({ success: true, message: "Deleted successfully" });
 };
+
+export const searchPeople = async (req, res) => {
+  const { search, limit } = req.query;
+  const people = await CrudModel.find({});
+  let searchedPeople = [...people];
+
+  if (search) {
+    searchedPeople = searchedPeople.filter((person) => {
+      return person.name.toLowerCase().startsWith(search.toLowerCase());
+    });
+  }
+
+  if (limit) {
+    searchedPeople = searchedPeople.slice(0, Number(limit));
+  }
+  if (searchedPeople.length < 1) {
+    return res.status(200).json({ success: true, data: [] });
+  }
+  res.json(searchedPeople);
+};
