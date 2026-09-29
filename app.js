@@ -1,6 +1,6 @@
 import express, { urlencoded } from "express";
 import connectDB from "./config/db.js";
-import people from "../route/peopleRoute.js";
+import people from "./route/peopleRoute.js";
 
 const app = express();
 
