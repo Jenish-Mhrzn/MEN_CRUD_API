@@ -51,3 +51,12 @@ export const updatePeople = async (req, res) => {
   }
   res.status(200).json({ success: true, message: "Updated successfully" });
 };
+
+export const deletePeople = async (req, res) => {
+  const { id } = req.params;
+  const people = await CrudModel.findByIdAndDelete(id);
+  if (!people) {
+    res.status(400).json({ success: false, message: "People not found" });
+  }
+  res.status(200).json({ success: true, message: "Deleted successfully" });
+};

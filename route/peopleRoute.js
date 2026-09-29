@@ -1,6 +1,12 @@
 import express from "express";
 
-import { getPeople, getPeopleById,createPeople,updatePeople } from "../controller/PeopleController.js";
+import {
+  getPeople,
+  getPeopleById,
+  createPeople,
+  updatePeople,
+  deletePeople,
+} from "../controller/PeopleController.js";
 
 const router = express.Router();
 
@@ -15,5 +21,8 @@ router.post("/", createPeople);
 
 //update
 router.patch("/:id", updatePeople);
+
+//delete
+router.delete("/:id", deletePeople);
 
 export default router;
