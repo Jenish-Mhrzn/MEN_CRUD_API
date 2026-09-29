@@ -33,3 +33,21 @@ export const createPeople = async (req, res) => {
     data,
   });
 };
+
+export const updatePeople = async (req, res) => {
+  const { id } = req.params;
+
+  const people = await CrudModel.findByIdAndUpdate(
+    id,
+    {
+      $set: req.body,
+    },
+    { new: true, runValidators: true },
+  );
+  if (!people) {
+    return res
+      .status(400)
+      .json({ success: false, message: "People not found" });
+  }
+  res.status(200).json({ success: true, message: "Updated successfully" });
+};
